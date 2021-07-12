@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <appender name="normal" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="normal" />
+        </root>
+    </springProfile>
+    <springProfile name="!local">
+        <logger name="jsonLogger" additivity="false" level="DEBUG">
+            <appender-ref ref="json"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="json"/>
+        </root>
+    </springProfile>
+</configuration>

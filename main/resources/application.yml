@@ -1,0 +1,17 @@
+server.port: 8080
+
+spring.profiles.active: local
+
+spring:
+  banner:
+    location: classpath:/banner.txt
+
+logging:
+  level:
+    root: info
+    org:
+      springframework: warn
+    com:
+      dashfwd:
+        controller: info
+        filters: info
